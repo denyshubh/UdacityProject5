@@ -1,0 +1,67 @@
+
+# kubectl get deployments
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+kubernetes-flaskapp   1/1     1            1           25m
+
+# kubectl get pods
+NAME                                   READY   STATUS    RESTARTS   AGE
+kubernetes-flaskapp-57bb5cb8f7-rlzsb   1/1     Running   0          25m
+
+
+# kubectl describe pods
+Name:         kubernetes-flaskapp-57bb5cb8f7-rlzsb
+Namespace:    default
+Priority:     0
+Node:         minikube/172.17.0.3
+Start Time:   Sun, 19 Apr 2020 02:39:02 +0000
+Labels:       app=kubernetes-flaskapp
+              pod-template-hash=57bb5cb8f7
+Annotations:  <none>
+Status:       Running
+IP:           172.18.0.5
+IPs:
+  IP:           172.18.0.5
+Controlled By:  ReplicaSet/kubernetes-flaskapp-57bb5cb8f7
+Containers:
+  flaskapp:
+    Container ID:   docker://de1a5feb3fcdd7e3b81e01fdb64aa4f68d13d3122b7c135f8e072e106ef98840
+    Image:          denyshubh/flaskapp
+    Image ID:       docker-pullable://denyshubh/flaskapp@sha256:4eb87b66a131a4d518c93f8ad4380443919c17c4b7ec6ed929932725bc37b4c5
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sun, 19 Apr 2020 02:39:03 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-8pjjf (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-8pjjf:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-8pjjf
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age        From               Message
+  ----    ------     ----       ----               -------
+  Normal  Scheduled  <unknown>  default-scheduler  Successfully assigned default/kubernetes-flaskapp-57bb5cb8f7-rlzsb to minikube
+  Normal  Pulling    25m        kubelet, minikube  Pulling image "denyshubh/flaskapp"
+  Normal  Pulled     25m        kubelet, minikube  Successfully pulled image "denyshubh/flaskapp"
+  Normal  Created    25m        kubelet, minikube  Created container flaskapp
+  Normal  Started    25m        kubelet, minikube  Started container flaskapp
+
+# kubectl port-forwar pod 8080:80
+Name of the Pod: kubernetes-flaskapp-57bb5cb8f7-rlzsb
+Forwarding from 127.0.0.1:8080 -> 80
+Forwarding from [::1]:8080 -> 80
+
